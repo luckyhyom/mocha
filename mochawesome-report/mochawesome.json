@@ -1,0 +1,215 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-08-03T07:36:46.026Z",
+    "end": "2021-08-03T07:36:46.050Z",
+    "duration": 24,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "09b39594-e936-4fa0-8b86-5682301f9b9c",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b96a7232-fe44-418f-aedb-b2ef81a530eb",
+          "title": "nock error test",
+          "fullFile": "/Users/hyomin/Desktop/sideProject/mocha/test/error.js",
+          "file": "/test/error.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook: http://www.happykoo.net/error request mocking in \"nock error test\"",
+              "fullTitle": "nock error test \"before all\" hook: http://www.happykoo.net/error request mocking in \"nock error test\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "nock('http://www.happykoo.net/')\n  .get('/error')\n  .replyWithError({\n    message: 'something awful happened',\n    code: ErrCode,\n  });",
+              "err": {},
+              "uuid": "fc6ef32a-0dfb-4138-a4aa-c4b50941688a",
+              "parentUUID": "b96a7232-fe44-418f-aedb-b2ef81a530eb",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "error test",
+              "fullTitle": "nock error test error test",
+              "timedOut": false,
+              "duration": 7,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "chai.request('http://www.happykoo.net')\n    .get('/error')\n    .catch( err => {\n      expect(err.code).to.equal(ErrCode);\n      done();\n    })",
+              "err": {},
+              "uuid": "57e2449d-716c-4c75-84c9-bc7ab622fd53",
+              "parentUUID": "b96a7232-fe44-418f-aedb-b2ef81a530eb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "57e2449d-716c-4c75-84c9-bc7ab622fd53"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "db38115d-ad9b-4cfd-acfe-1e7d85880d3b",
+          "title": "nock persist test",
+          "fullFile": "/Users/hyomin/Desktop/sideProject/mocha/test/sum.js",
+          "file": "/test/sum.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook: http://summer.net/sum request mocking in \"nock persist test\"",
+              "fullTitle": "nock persist test \"before all\" hook: http://summer.net/sum request mocking in \"nock persist test\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "nock('http://summer.net')\n.get('/sum')\n.query(true)\n.reply(200, (uri, req, cb)=> {\n    uri = url.parse(uri);\n    qs = querystring.parse(uri.query);\n    cb(null, Number(qs.a) + Number(qs.b));\n})\n.persist();",
+              "err": {},
+              "uuid": "46e1f616-272d-4925-be9c-d69242560c7a",
+              "parentUUID": "db38115d-ad9b-4cfd-acfe-1e7d85880d3b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook: clean in \"nock persist test\"",
+              "fullTitle": "nock persist test \"after all\" hook: clean in \"nock persist test\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "nock.cleanAll();",
+              "err": {},
+              "uuid": "4d71a8dc-a078-47cd-8874-c19f42651a00",
+              "parentUUID": "db38115d-ad9b-4cfd-acfe-1e7d85880d3b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "sum test",
+              "fullTitle": "nock persist test sum test",
+              "timedOut": false,
+              "duration": 7,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "chai.request('http://summer.net')\n.get('/sum')\n.query({a: 2, b: 3})\n.then( res => {\n    expect(res.body).to.deep.equal(5);\n    done();\n})\n.catch( err => {\n    console.error(err);\n    done(err);\n})",
+              "err": {},
+              "uuid": "4cb4077b-a2dd-4e38-8949-2c03fa041a2f",
+              "parentUUID": "db38115d-ad9b-4cfd-acfe-1e7d85880d3b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "sum test2 : 5 + 3",
+              "fullTitle": "nock persist test sum test2 : 5 + 3",
+              "timedOut": false,
+              "duration": 4,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "chai.request('http://summer.net')\n.get('/sum')\n.query({a: 5, b: 3})\n.then( res => {\n    expect(res.body).to.deep.equal(8);\n    done();\n})\n.catch( err => {\n    console.error(err);\n    done(err);\n})",
+              "err": {},
+              "uuid": "8f0d8b2e-da34-4a7f-9a5d-3fe1ba635a58",
+              "parentUUID": "db38115d-ad9b-4cfd-acfe-1e7d85880d3b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4cb4077b-a2dd-4e38-8949-2c03fa041a2f",
+            "8f0d8b2e-da34-4a7f-9a5d-3fe1ba635a58"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.0.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.2.0"
+    }
+  }
+}
